@@ -6,9 +6,9 @@
       <class name="Test_Cases.Verify_dashboard">
         <methods>
           <include name="tracerror"/>
-          <include name="verify_location"/>
           <include name="teardown"/>
           <include name="Openbrowser"/>
+          <include name="verify_resto"/>
         </methods>
       </class> <!-- Test_Cases.Verify_dashboard -->
     </classes>

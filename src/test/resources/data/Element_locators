@@ -26,3 +26,6 @@ using multiple attribute =	tagname[attribute-name=�value1�][attribute2=�va
 using containts =	        tagname[attribute*="value"] 
 using starts -with  =	    tagname[attribute^="value"] 
 using ends -with  =	        tagname[attribute$="value"] 
+
+***************************************************
+image locator -http://imagemap-generator.dariodomi.de/'

@@ -26,39 +26,47 @@ public class Verify_dashboard extends config.Configuration {
 
 	}
 
-	@Test(enabled = false)
-	public void verify_resto() throws IOException {
-
-	}
-
 	@Test
-	public void take_screenshot() throws IOException {
-
-		dashbaord.take_screenshot("footer");
+	public  void verify_resto() throws IOException, InterruptedException {
+	
+		dashbaord.verify_restautants();
 
 	}
+
 
 	@Test(enabled = false)
 	public void verify_contact() {
 
-	dashbaord.vefify_contact();
-		
-		
+		dashbaord.vefify_contact();
+
 	}
-	
+
 	@Test(enabled = false)
 	public void verify_quicklinks() throws IOException, InterruptedException {
 
-	dashbaord.verify_Quicklinks();
-		
-		
+		dashbaord.verify_Quicklinks();
+
 	}
+
 	@Test(enabled = false)
 	public void verify_location() throws IOException, InterruptedException {
 
 		dashbaord.verify_location();
-			
-			
-		}
+
+	}
+
+	@Test(enabled = false)
+	public void verify_rights() throws IOException, InterruptedException {
+
+		dashbaord.verify_rights();
+
+	}
+
+	@Test(enabled = false)
+	public void take_screenshot() throws IOException, InterruptedException {
+
+		dashbaord.take_screenshot();
+
+	}
 
 }

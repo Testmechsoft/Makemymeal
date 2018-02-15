@@ -1,21 +1,16 @@
 package com.pageObject;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
-
-import javax.imageio.ImageIO;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import lib_methods.*;
-import ru.yandex.qatools.ashot.AShot;
 
 public class Home {
 	public WebDriver driver;
@@ -95,9 +90,6 @@ public class Home {
 	@FindBy(xpath = ".//*[@id='footer']/div/div/div[1]/p[2]/span")
 	WebElement email;
 
-	@FindBy(xpath = ".//*[@class='rights']")
-	WebElement rights;
-
 	@FindBy(css = ".addcartDiv")
 	WebElement cartlog;
 
@@ -119,10 +111,12 @@ public class Home {
 	@FindBy(xpath = ".//a[contains(text(),'FAQ')]")
 	WebElement FAQ;
 
-	@FindBy(xpath =".//*[@id='footer']/div/div")
-	WebElement Footer;
+	@FindBy(xpath = ".//p[@class='rights']")
+	WebElement rights;
 
-	
+	@FindBy(xpath = ".//*[@id='body']/div[3]/div[2]/div[2]/div/div[1]/div[1]/div/div[1]/img")
+	WebElement r_sukh;
+
 	public boolean verify_cart() throws IOException {
 
 		Boolean imageLoaded1 = (Boolean) ((JavascriptExecutor) driver).executeScript(
@@ -171,7 +165,7 @@ public class Home {
 					"Refund policy page did not opened");
 			driver.navigate().back();
 			wait.waitfor(2);
-			
+
 			System.out.println("*************Verifying deliverypolicy************");
 
 			deliverypolicy.click();
@@ -181,8 +175,7 @@ public class Home {
 					"deliverypolicy page did not opened");
 			driver.navigate().back();
 			wait.waitfor(2);
-			
-			
+
 			System.out.println("*************Verifying Terms************");
 
 			Terms.click();
@@ -193,9 +186,8 @@ public class Home {
 			driver.navigate().back();
 			wait.waitfor(2);
 
-			
 			System.out.println("*************Verifying privacy************");
-			
+
 			Privacy.click();
 			wait.waitfor(1);
 			String r4 = driver.getCurrentUrl();
@@ -203,9 +195,8 @@ public class Home {
 					"Privacy page did not opened");
 			driver.navigate().back();
 			wait.waitfor(2);
-			
-			System.out.println("*************Verifying about us"
-					+ "************");
+
+			System.out.println("*************Verifying about us" + "************");
 
 			About.click();
 			wait.waitfor(1);
@@ -214,10 +205,9 @@ public class Home {
 					"aboutus page did not opened");
 			driver.navigate().back();
 			wait.waitfor(2);
-			
-			System.out.println("*************Verifying FAQ"
-					+ "************");
-			
+
+			System.out.println("*************Verifying FAQ" + "************");
+
 			FAQ.click();
 			wait.waitfor(1);
 			String r6 = driver.getCurrentUrl();
@@ -232,10 +222,11 @@ public class Home {
 		return true;
 	}
 
-	public boolean take_screenshot(String sc) throws IOException {
-
-		sshot.Element_screenshot(Footer, sc);
-		return false;
+	public boolean take_screenshot() throws IOException, InterruptedException {
+		
+		
+		 //sshot.Element_screenshot(r_sukh, sc);
+		return true;
 	}
 
 	public boolean verify_Headerlinks() {
@@ -361,38 +352,37 @@ public class Home {
 		singup_link.click();
 
 	}
-	
-	
-	public void verify_location(){
-		
-		
-	boolean city=select_city.isDisplayed();
-	
-	Assert.assertTrue(city);
-	select_city.click();
-	
-	List<WebElement>c=driver.findElements(By.xpath(".//*[@id='City_Id-list']//li"));
-	
-	for (WebElement ele : c){
-		
-		String cityname =ele.getText();
-		
-		System.out.println(cityname);
-		
-		
-		
-		
-	}
-	
 
-	
-	
-		
-		
-		
-		
-		
-		
+	public void verify_location() {
+
+		boolean city = select_city.isDisplayed();
+
+		Assert.assertTrue(city);
+		select_city.click();
+
+		List<WebElement> c = driver.findElements(By.xpath(".//*[@id='City_Id-list']//li"));
+
+		for (WebElement ele : c) {
+
+			String cityname = ele.getText();
+
+			System.out.println(cityname);
+
+		}
+
 	}
 
+	public boolean verify_rights() {
+
+		String rig = rights.getText();
+
+		Assert.assertEquals(rig, "2018 All Right Reserved Make My Meal", "Rights did not match");
+		return true;
+
+	}
+	
+	public void verify_restautants() throws IOException, InterruptedException{
+		
+		compare.compare_hideen_image(r_sukh, "rest1");
+	}
 }
