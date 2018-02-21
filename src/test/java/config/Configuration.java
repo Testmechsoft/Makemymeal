@@ -12,7 +12,7 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 
 import com.pageObject.Home;
-
+import com.pageObject.Restaurant_Reg;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -22,6 +22,7 @@ import lib_methods.ExcelSheetDriver;
 import lib_methods.Explicit_timeout;
 import lib_methods.Implicit_timeout;
 import lib_methods.Log;
+import lib_methods.Mouse_actions;
 import lib_methods.Navigate;
 import lib_methods.Screenshot;
 import lib_methods.Scroll;
@@ -56,6 +57,8 @@ public class Configuration {
 	public pageLoad p;
 	public Navigate Navigate;
 	public Home dashbaord;
+	public Mouse_actions m;
+	public Restaurant_Reg reg;
 
 	public Configuration() {
 		b = new Browser_factory();
@@ -77,14 +80,15 @@ public class Configuration {
 		p = new pageLoad(driver);
 		Navigate = new Navigate(driver);
 		vf = new Verify_Link(driver);
-		dashbaord = PageFactory.initElements(driver,Home.class);
-
+		dashbaord = PageFactory.initElements(driver, Home.class);
+		m = new Mouse_actions(driver);
+		reg = new Restaurant_Reg(driver);
 	}
 
 	@BeforeSuite
 	public void Openbrowser() throws InterruptedException {
 
-		driver.get("https://www.makemymeal.ae/makemymealuat/");
+		driver.get("https://www.makemymeal.ae/makemymealdev/Register/Restaurant");
 		driver.manage().window().maximize();
 
 		try {
@@ -125,11 +129,11 @@ public class Configuration {
 
 			try {
 
-				filepath = s.Capturescreenshot(driver,result.getName());
+				filepath = s.Capturescreenshot(driver, result.getName());
 
 				System.out.println(filepath);
 
-				logger.log(LogStatus.FAIL, result.getInstanceName() + "-------Fail", logger.addScreenCapture(filepath));
+				logger.log(LogStatus.FAIL, result.getName() + "-------Fail", logger.addScreenCapture(filepath));
 
 			} catch (Exception e) {
 

@@ -58,16 +58,17 @@ public class Comapre_images {
 
 	}
 
-	public boolean compare_hideen_image(WebElement e, String imagename) throws IOException, InterruptedException {
+	public String compare_hideen_image(WebElement e, int x, int y, String expimg)
+			throws IOException, InterruptedException {
 		// take screenshot of the page and save it as FILE type
-		
-		//Read Expected image
 
-		BufferedImage expectedImage = ImageIO.read(new File(imagepath + imagename + ".png"));
+		// Read Expected image
+
+		BufferedImage expectedImage = ImageIO.read(new File(imagepath +expimg+ ".png"));
 
 		sc.scroll_down(1000);
-		
-		//Take screenshot
+
+		// Take screenshot
 
 		File scrshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
@@ -75,32 +76,31 @@ public class Comapre_images {
 
 		// copy screenshot to file
 		FileUtils.copyFile(scrshot, screenshot);
-		
-        // Read screenshot image
+
+		// Read screenshot image
 
 		BufferedImage actualImage = ImageIO.read(screenshot);
 
 		Point p = e.getLocation();
 		int h = e.getSize().getHeight();
 		int w = e.getSize().getWidth();
-		
 
 		// crop screenshot image using the height and width dimensions
 
-		BufferedImage finalImg = actualImage.getSubimage(104, 53, w, h);
+		BufferedImage finalImg = actualImage.getSubimage(x, y, w, h);
 
 		File outputfile = new File(System.getProperty("user.dir") + "/src/test/resources/TestData/output.png");
-		
+
 		// Write cropped image
 
-		ImageIO.write(finalImg,"png", outputfile);
-		
+		ImageIO.write(finalImg, "png", outputfile);
+
 		// Read cropped image
 
-		BufferedImage act= ImageIO.read(outputfile);
+		BufferedImage act = ImageIO.read(outputfile);
 
 		Thread.sleep(3000);
-		
+
 		// comapre expected and crroped image
 
 		ImageDiffer imgDiff = new ImageDiffer();
@@ -110,6 +110,6 @@ public class Comapre_images {
 
 		Assert.assertFalse(diff.hasDiff(), "Images are not Same");
 
-		return false;
+		return expimg;
 	}
 }

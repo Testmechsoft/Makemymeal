@@ -6,7 +6,7 @@ import org.testng.annotations.Test;
 
 public class Verify_dashboard extends config.Configuration {
 
-	@Test(enabled = false)
+	@Test(priority = 3)
 	public void Headerlinks() {
 
 		Boolean links = dashbaord.verify_Headerlinks();
@@ -20,52 +20,53 @@ public class Verify_dashboard extends config.Configuration {
 		}
 	}
 
-	@Test(enabled = false)
-	public void verify_cart() throws IOException {
+	@Test(priority = 2)
+	public void verify_cart() throws IOException, InterruptedException {
 		dashbaord.verify_cart();
+		Thread.sleep(3000);
 
 	}
 
-	@Test
-	public  void verify_resto() throws IOException, InterruptedException {
-	
-		dashbaord.verify_restautants();
+	@Test(priority = 1)
+	public void verify_location() throws IOException, InterruptedException {
+
+		dashbaord.verify_city("Dubai");
+		Thread.sleep(3000);
+		dashbaord.verify_area("Airport Road");
 
 	}
 
+	@Test(priority = 4)
+	public void vefiry_banner() throws InterruptedException {
+		dashbaord.verify_banners();
 
-	@Test(enabled = false)
+	}
+
+	@Test(priority = 5)
+	public void verify_resto() throws IOException, InterruptedException {
+
+		dashbaord.verify_Partner_restaurent();
+
+	}
+
+	@Test(priority = 6)
 	public void verify_contact() {
 
-		dashbaord.vefify_contact();
+		dashbaord.verify_contact();
 
 	}
 
-	@Test(enabled = false)
+	@Test(priority = 7)
 	public void verify_quicklinks() throws IOException, InterruptedException {
 
 		dashbaord.verify_Quicklinks();
 
 	}
 
-	@Test(enabled = false)
-	public void verify_location() throws IOException, InterruptedException {
-
-		dashbaord.verify_location();
-
-	}
-
-	@Test(enabled = false)
+	@Test(priority = 8)
 	public void verify_rights() throws IOException, InterruptedException {
 
 		dashbaord.verify_rights();
-
-	}
-
-	@Test(enabled = false)
-	public void take_screenshot() throws IOException, InterruptedException {
-
-		dashbaord.take_screenshot();
 
 	}
 
