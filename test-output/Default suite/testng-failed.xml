@@ -3,14 +3,14 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="Test_Cases.test">
+      <class name="Test_Cases.t">
         <methods>
           <include name="tracerror"/>
-          <include name="captcha"/>
           <include name="teardown"/>
           <include name="Openbrowser"/>
+          <include name="Restaurant_Management"/>
         </methods>
-      </class> <!-- Test_Cases.test -->
+      </class> <!-- Test_Cases.t -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

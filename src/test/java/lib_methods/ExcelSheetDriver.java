@@ -20,8 +20,8 @@ public class ExcelSheetDriver {
 	static Workbook wrkbook = null;
 	public String ExcelSheetPath;
 	public String sheetname;
-	private String excelpath = "";
-	private String excelpath1 = "";
+	// private String excelpath = "";
+	// private String excelpath1 = "";
 
 	public ExcelSheetDriver(String ExcelSheetPath, String sheetname) throws BiffException, IOException {
 
@@ -73,8 +73,8 @@ public class ExcelSheetDriver {
 
 		try {
 
-			File inputFile = new File(excelpath);
-			File outputFile = new File(excelpath1);
+			File inputFile = new File("");
+			File outputFile = new File("");
 			Workbook readCopy = Workbook.getWorkbook(inputFile);
 
 			WritableWorkbook writeCopy = Workbook.createWorkbook(outputFile, readCopy);

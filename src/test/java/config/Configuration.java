@@ -3,6 +3,7 @@ package config;
 import java.net.MalformedURLException;
 import java.time.LocalTime;
 
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -24,6 +25,7 @@ import lib_methods.Implicit_timeout;
 import lib_methods.Log;
 import lib_methods.Mouse_actions;
 import lib_methods.Navigate;
+import lib_methods.Remove_character_from_string;
 import lib_methods.Screenshot;
 import lib_methods.Scroll;
 import lib_methods.Select_dropdown;
@@ -60,6 +62,8 @@ public class Configuration {
 	public Mouse_actions m;
 	public Restaurant_Reg reg;
 
+	
+
 	public Configuration() {
 		b = new Browser_factory();
 		try {
@@ -83,6 +87,7 @@ public class Configuration {
 		dashbaord = PageFactory.initElements(driver, Home.class);
 		m = new Mouse_actions(driver);
 		reg = new Restaurant_Reg(driver);
+		
 	}
 
 	@BeforeSuite

@@ -2,35 +2,77 @@
 <testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="160837" started-at="2018-02-21T06:45:30Z" finished-at="2018-02-21T06:48:11Z">
+  <suite name="Default suite" duration-ms="42861" started-at="2018-02-26T04:23:28Z" finished-at="2018-02-26T04:24:11Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="160837" started-at="2018-02-21T06:45:30Z" finished-at="2018-02-21T06:48:11Z">
-      <class name="Test_Cases.test">
-        <test-method status="PASS" signature="Openbrowser()[pri:0, instance:Test_Cases.test@61eaec38]" name="Openbrowser" is-config="true" duration-ms="7324" started-at="2018-02-21T12:15:23Z" finished-at="2018-02-21T12:15:30Z">
+    <test name="Default test" duration-ms="42861" started-at="2018-02-26T04:23:28Z" finished-at="2018-02-26T04:24:11Z">
+      <class name="Test_Cases.Restaurent_registration">
+        <test-method status="PASS" signature="Openbrowser()[pri:0, instance:Test_Cases.Restaurent_registration@31920ade]" name="Openbrowser" is-config="true" duration-ms="7177" started-at="2018-02-26T09:53:21Z" finished-at="2018-02-26T09:53:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- Openbrowser -->
-        <test-method status="PASS" signature="captcha()[pri:0, instance:Test_Cases.test@61eaec38]" name="captcha" duration-ms="153456" started-at="2018-02-21T12:15:30Z" finished-at="2018-02-21T12:18:03Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- captcha -->
-        <test-method status="PASS" signature="tracerror(org.testng.ITestResult)[pri:0, instance:Test_Cases.test@61eaec38]" name="tracerror" is-config="true" duration-ms="2" started-at="2018-02-21T12:18:03Z" finished-at="2018-02-21T12:18:03Z">
+        <test-method status="PASS" signature="Restaurant_Management(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:Test_Cases.Restaurent_registration@31920ade]" name="Restaurant_Management" duration-ms="35692" started-at="2018-02-26T09:53:28Z" data-provider="data" finished-at="2018-02-26T09:54:04Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=captcha status=SUCCESS method=test.captcha()[pri:0, instance:Test_Cases.test@61eaec38] output={null}]]]>
+                <![CDATA[siddhartha.panda@mechsoftgroup.com]]>
+              </value>
+            </param>
+            <param index="1">
+              <value>
+                <![CDATA[siddhartha.panda@mechsoftgroup.com]]>
+              </value>
+            </param>
+            <param index="2">
+              <value>
+                <![CDATA[Siddhartha]]>
+              </value>
+            </param>
+            <param index="3">
+              <value>
+                <![CDATA[sidh4078]]>
+              </value>
+            </param>
+            <param index="4">
+              <value>
+                <![CDATA[Pure-Veg ]]>
+              </value>
+            </param>
+            <param index="5">
+              <value>
+                <![CDATA[Indian�Veg]]>
+              </value>
+            </param>
+            <param index="6">
+              <value>
+                <![CDATA[Sunday]]>
+              </value>
+            </param>
+            <param index="7">
+              <value>
+                <![CDATA[Akurdi ]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Restaurant_Management -->
+        <test-method status="PASS" signature="tracerror(org.testng.ITestResult)[pri:0, instance:Test_Cases.Restaurent_registration@31920ade]" name="tracerror" is-config="true" duration-ms="1" started-at="2018-02-26T09:54:04Z" finished-at="2018-02-26T09:54:04Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=Restaurant_Management status=SUCCESS method=Restaurent_registration.Restaurant_Management(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String)[pri:0, instance:Test_Cases.Restaurent_registration@31920ade] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tracerror -->
-        <test-method status="PASS" signature="teardown()[pri:0, instance:Test_Cases.test@61eaec38]" name="teardown" is-config="true" duration-ms="7361" started-at="2018-02-21T12:18:03Z" finished-at="2018-02-21T12:18:11Z">
+        <test-method status="PASS" signature="teardown()[pri:0, instance:Test_Cases.Restaurent_registration@31920ade]" name="teardown" is-config="true" duration-ms="6985" started-at="2018-02-26T09:54:04Z" finished-at="2018-02-26T09:54:11Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->
-      </class> <!-- Test_Cases.test -->
+      </class> <!-- Test_Cases.Restaurent_registration -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

@@ -1,12 +1,15 @@
 package com.pageObject;
 
+import java.util.List;
 import java.util.Scanner;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.Select;
 
 import lib_methods.*;
@@ -15,73 +18,25 @@ public class Restaurant_Reg {
 	public WebDriver driver;
 	public heighlight h;
 	public Scroll s;
+	public String cat;
+	public String wk;
+	public String Area;
 
 	public Restaurant_Reg(WebDriver drv) {
 
 		this.driver = drv;
 		h = new heighlight(driver);
 		s = new Scroll(driver);
+
 	}
 
 	/*******************************
 	 * Restaurant Registration
 	 ***************************************/
 
-	@FindBy(xpath = ".//*[@id='email_id']")
-	@CacheLookup
-	WebElement Email;
-
-	@FindBy(xpath = ".//*[@id='comm_email_id']")
-	@CacheLookup
-	WebElement CEmail;
-
-	@FindBy(xpath = ".//*[@id='Rest_name']")
-	@CacheLookup
-	WebElement Res_name;
-
-	@FindBy(xpath = ".//*[@id='Rest_password']")
-	@CacheLookup
-	WebElement password;
-
-	@FindBy(xpath = ".//*[@id='Rest_MealType']")
-	@CacheLookup
-	WebElement MealType;
-
-	@FindBy(xpath = ".//*[@id='AddRestaurant']/div/div[2]/div/div/div/div[7]/div/div/span/div/button")
-	@CacheLookup
-	WebElement category;
-
-	@FindBy(xpath = ".//*[@id='AddRestaurant']/div/div[2]/div/div/div/div[8]/div/div/span/div/button")
-	@CacheLookup
-	WebElement Weekendoff;
-
-	@FindBy(xpath = ".//*[@id='AddRestaurant']/div/div[2]/div/div/div/div[9]/div/div/span/div/button")
-	@CacheLookup
-	WebElement Area;
-
-	@FindBy(xpath = ".//*[@id='Rest_COD']")
-	@CacheLookup
-	WebElement COD;
-
-	@FindBy(xpath = ".//*[@id='Rest_Code']")
-	@CacheLookup
-	WebElement Code;
-
-	@FindBy(xpath = ".//*[@id='Rest_ContactNo']")
-	@CacheLookup
-	WebElement ContactNo;
-
-	@FindBy(xpath = ".//*[@id='Rest_Address']")
-	@CacheLookup
-	WebElement Address;
-
 	@FindBy(xpath = ".//*[@id='Rest_Status']")
 	@CacheLookup
 	WebElement Status;
-
-	@FindBy(xpath = ".//*[@id='Rest_Pause']")
-	@CacheLookup
-	WebElement Pause;
 
 	@FindBy(xpath = ".//*[@id='Rest_CommissionType']")
 	@CacheLookup
@@ -90,34 +45,6 @@ public class Restaurant_Reg {
 	@FindBy(xpath = ".//*[@id='Rest_DailyEmail']")
 	@CacheLookup
 	WebElement DailyEmail;
-
-	@FindBy(xpath = ".//*[@id='first_name']")
-	@CacheLookup
-	WebElement first_name;
-
-	@FindBy(xpath = ".//*[@id='last_name']")
-	@CacheLookup
-	WebElement last_name;
-
-	@FindBy(xpath = ".//*[@id='Code']")
-	@CacheLookup
-	WebElement pCode;
-
-	@FindBy(xpath = ".//*[@id='ContactNo']")
-	@CacheLookup
-	WebElement pContactNo;
-
-	@FindBy(xpath = ".//*[@id='Address']")
-	@CacheLookup
-	WebElement pAddress;
-
-	@FindBy(xpath = ".//*[@id='Rest_Profile']")
-	@CacheLookup
-	WebElement RestaurantImage;
-
-	@FindBy(xpath = ".//*[@id='Menu_Profile']")
-	@CacheLookup
-	WebElement menuImage;
 
 	@FindBy(css = "#txtCaptchaInput")
 	WebElement ecaptcha;
@@ -130,35 +57,37 @@ public class Restaurant_Reg {
 	 ***************************************/
 
 	public String enter_email(String email) {
-		h.h(Email);
-		Email.sendKeys(email);
+
+		h.h(driver.findElement(By.xpath(".//*[@id='email_id']")));
+		driver.findElement(By.xpath(".//*[@id='email_id']")).sendKeys(email);
 		return email;
 	}
 
 	public String enter_cemail(String cemail) {
-		h.h(CEmail);
-		CEmail.sendKeys(cemail);
+		h.h(driver.findElement(By.xpath(".//*[@id='comm_email_id']")));
+		driver.findElement(By.xpath(".//*[@id='comm_email_id']")).sendKeys(cemail);
 		return cemail;
+
 	}
 
 	public String enter_restaurantname(String rname) {
-		h.h(Res_name);
-		Res_name.sendKeys(rname);
+		h.h(driver.findElement(By.xpath(".//*[@id='Rest_name']")));
+		driver.findElement(By.xpath(".//*[@id='Rest_name']")).sendKeys(rname);
 		return rname;
 	}
 
 	public String enter_restauranpassword(String pass) {
-		h.h(password);
-		password.sendKeys(pass);
+		h.h(driver.findElement(By.xpath(".//*[@id='Rest_password']")));
+		driver.findElement(By.xpath(".//*[@id='Rest_password']")).sendKeys(pass);
 		return pass;
 	}
 
 	public boolean select_restauranType(String value) throws InterruptedException {
 
-		h.h(MealType);
-		Select s = new Select(MealType);
+		h.h(driver.findElement(By.xpath(".//*[@id='Rest_MealType']")));
+		Select s = new Select(driver.findElement(By.xpath(".//*[@id='Rest_MealType']")));
 
-		s.selectByValue(value);
+		s.selectByIndex(1);
 
 		Thread.sleep(2000);
 
@@ -167,48 +96,168 @@ public class Restaurant_Reg {
 
 	public boolean select_category(String value) throws InterruptedException {
 
-		h.h(category);
+		// Remove_character_from_string re = new Remove_character_from_string();
+		if (value.contains("�")) {
 
-		Select s = new Select(category);
+			int index = value.indexOf("�");
+			cat = Remove_character_from_string.removeCharAt(value, index);
 
-		s.selectByValue(value);
+		}
 
+		boolean x = driver.findElement(By.xpath(".//*[@tabindex='6' ]")).isDisplayed();
 		Thread.sleep(2000);
 
+		if (x) {
+
+			Thread.sleep(2000);
+
+			Actions a = new Actions(driver);
+
+			a.moveByOffset(714, 462);
+
+			a.click();
+
+			a.perform();
+
+			Thread.sleep(2000);
+
+			List<WebElement> l = driver.findElements(
+					By.xpath(".//*[@id='AddRestaurant']/div[2]/div/div/div/div[9]/div/span/span/div/ul/li/a"));
+
+			for (WebElement ele : l) {
+
+				String category = ele.getText();
+
+				String c = category.replaceAll("\\s+", "");
+
+				if (c.contentEquals(cat)) {
+
+					ele.click();
+
+					a.moveByOffset(670, 462);
+
+					a.click();
+
+					a.perform();
+
+					break;
+
+				}
+			}
+
+		}
+
 		return true;
+
 	}
 
 	public boolean select_weekoff(String value) throws InterruptedException {
 
-		h.h(Weekendoff);
-
-		Select s = new Select(Weekendoff);
-
-		s.selectByValue(value);
-
+		boolean x = driver.findElement(By.xpath(".//*[@tabindex='7' and @ type='button']")).isDisplayed();
 		Thread.sleep(2000);
+
+		if (x) {
+
+			driver.findElement(By.xpath(".//*[@tabindex='7' and @ type='button']")).click();
+
+			Thread.sleep(2000);
+
+			List<WebElement> l = driver.findElements(
+					By.xpath(".//*[@id='AddRestaurant']/div[2]/div/div/div/div[11]/div/span/div/ul/li/a"));
+
+			for (WebElement ele : l) {
+
+				String wkl = ele.getText();
+
+				String c = wkl.replaceAll("\\s+", "");
+
+				if (value.contains("�")) {
+
+					int index = value.indexOf("�");
+					wk = Remove_character_from_string.removeCharAt(value, index);
+
+					if (c.contentEquals(wk)) {
+						ele.click();
+
+						Actions a = new Actions(driver);
+
+						a.moveByOffset(462, 555);
+
+						a.click();
+
+						a.perform();
+
+						break;
+					}
+				}
+
+			}
+		}
 
 		return true;
 	}
 
 	public boolean select_area(String value) throws InterruptedException {
 
-		h.h(Area);
+		if (value.contains("�")) {
 
-		Select s = new Select(Area);
+			int index = value.indexOf("�");
+			Area = Remove_character_from_string.removeCharAt(value, index);
 
-		s.selectByValue(value);
+		}
 
+		boolean x = driver.findElement(By.xpath(".//*[@tabindex='8' ]")).isDisplayed();
 		Thread.sleep(2000);
 
+		if (x) {
+
+			Thread.sleep(2000);
+
+			Actions a = new Actions(driver);
+
+			a.moveByOffset(339, 555);
+
+			a.click();
+
+			a.perform();
+
+			Thread.sleep(2000);
+
+			List<WebElement> l = driver.findElements(
+					By.xpath(".//*[@id='AddRestaurant']/div[2]/div/div/div/div[12]/div/span/span/div/ul/li/a"));
+
+			for (WebElement ele : l) {
+
+				String category = ele.getText();
+
+				String c = category.replaceAll("\\s+", "");
+
+				if (c.contentEquals(Area)) {
+
+					ele.click();
+
+					try {
+						a.moveByOffset(458, 521);
+
+						a.click();
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+					break;
+
+				}
+			}
+		}
 		return true;
 	}
 
 	public boolean select_cod(String value) throws InterruptedException {
 
-		h.h(COD);
+		h.h(driver.findElement(By.xpath(".//*[@id='Rest_COD']")));
 
-		Select s = new Select(COD);
+		Select s = new Select(driver.findElement(By.xpath(".//*[@id='Rest_COD']")));
 
 		s.selectByValue(value);
 
@@ -219,9 +268,9 @@ public class Restaurant_Reg {
 
 	public boolean Enter_pausecount(String value) throws InterruptedException {
 
-		h.h(Pause);
+		h.h(driver.findElement(By.xpath(".//*[@id='Rest_Pause']")));
 
-		Pause.sendKeys(value);
+		driver.findElement(By.xpath(".//*[@id='Rest_Pause']")).sendKeys(value);
 
 		Thread.sleep(2000);
 
@@ -230,9 +279,9 @@ public class Restaurant_Reg {
 
 	public boolean select_code(String value) throws InterruptedException {
 
-		h.h(Code);
+		h.h(driver.findElement(By.xpath(".//*[@id='Rest_Code']")));
 
-		Select s = new Select(Code);
+		Select s = new Select(driver.findElement(By.xpath(".//*[@id='Rest_Code']")));
 
 		s.selectByValue(value);
 
@@ -243,9 +292,9 @@ public class Restaurant_Reg {
 
 	public boolean Enter_contactno(String value) throws InterruptedException {
 
-		h.h(ContactNo);
+		h.h(driver.findElement(By.xpath(".//*[@id='Rest_ContactNo']")));
 
-		ContactNo.sendKeys(value);
+		driver.findElement(By.xpath(".//*[@id='Rest_ContactNo']")).sendKeys(value);
 
 		Thread.sleep(2000);
 
@@ -254,9 +303,9 @@ public class Restaurant_Reg {
 
 	public boolean Enter_address(String value) throws InterruptedException {
 
-		h.h(Address);
+		h.h(driver.findElement(By.xpath(".//*[@id='Rest_Address']")));
 
-		Address.sendKeys(value);
+		driver.findElement(By.xpath(".//*[@id='Rest_Address']")).sendKeys(value);
 
 		Thread.sleep(2000);
 
@@ -269,9 +318,9 @@ public class Restaurant_Reg {
 
 	public boolean Enter_firstname(String value) throws InterruptedException {
 
-		h.h(first_name);
+		h.h(driver.findElement(By.xpath(".//*[@id='first_name']")));
 
-		first_name.sendKeys(value);
+		driver.findElement(By.xpath(".//*[@id='first_name']")).sendKeys(value);
 
 		Thread.sleep(2000);
 
@@ -280,9 +329,9 @@ public class Restaurant_Reg {
 
 	public boolean Enter_lastname(String value) throws InterruptedException {
 
-		h.h(last_name);
+		h.h(driver.findElement(By.xpath(".//*[@id='last_name']")));
 
-		last_name.sendKeys(value);
+		driver.findElement(By.xpath(".//*[@id='last_name']")).sendKeys(value);
 
 		Thread.sleep(2000);
 
@@ -291,9 +340,9 @@ public class Restaurant_Reg {
 
 	public boolean selec_pcode(String value) throws InterruptedException {
 
-		h.h(pCode);
+		h.h(driver.findElement(By.xpath(".//*[@id='Code']")));
 
-		Select s = new Select(pCode);
+		Select s = new Select(driver.findElement(By.xpath(".//*[@id='Code']")));
 
 		s.selectByValue(value);
 
@@ -304,9 +353,9 @@ public class Restaurant_Reg {
 
 	public boolean Enter_pcontactno(String value) throws InterruptedException {
 
-		h.h(pContactNo);
+		h.h(driver.findElement(By.xpath(".//*[@id='ContactNo']")));
 
-		pContactNo.sendKeys(value);
+		driver.findElement(By.xpath(".//*[@id='ContactNo']")).sendKeys(value);
 
 		Thread.sleep(2000);
 
@@ -315,9 +364,9 @@ public class Restaurant_Reg {
 
 	public boolean Enter_paddress(String value) throws InterruptedException {
 
-		h.h(pAddress);
+		h.h(driver.findElement(By.xpath(".//*[@id='Address']")));
 
-		pAddress.sendKeys(value);
+		driver.findElement(By.xpath(".//*[@id='Address']")).sendKeys(value);
 
 		Thread.sleep(2000);
 
@@ -326,9 +375,9 @@ public class Restaurant_Reg {
 
 	public boolean upload_restuarantimage(String value) throws InterruptedException {
 
-		h.h(RestaurantImage);
+		h.h(driver.findElement(By.xpath(".//*[@id='Rest_Profile']")));
 
-		RestaurantImage.sendKeys(value);
+		driver.findElement(By.xpath(".//*[@id='Rest_Profile']")).sendKeys(value);
 
 		Thread.sleep(2000);
 
@@ -337,9 +386,9 @@ public class Restaurant_Reg {
 
 	public boolean upload_menuimage(String value) throws InterruptedException {
 
-		h.h(menuImage);
+		h.h(driver.findElement(By.xpath(".//*[@id='Menu_Profile']")));
 
-		menuImage.sendKeys(value);
+		driver.findElement(By.xpath(".//*[@id='Menu_Profile']")).sendKeys(value);
 
 		Thread.sleep(2000);
 
@@ -348,7 +397,7 @@ public class Restaurant_Reg {
 
 	public boolean enter_captcha() throws InterruptedException {
 
-		// h.h(driver.findElement(By.xpath(".//*[@id='txtCaptcha']")));
+		h.h(driver.findElement(By.xpath(".//*[@id='ContactNo']")));
 
 		s.scroll_down(1000);
 
