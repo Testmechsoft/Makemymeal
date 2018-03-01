@@ -93,7 +93,7 @@ public class Configuration {
 	@BeforeSuite
 	public void Openbrowser() throws InterruptedException {
 
-		driver.get("https://www.makemymeal.ae/makemymealdev/Register/Restaurant");
+		driver.get("https://www.makemymeal.ae");
 		driver.manage().window().maximize();
 
 		try {

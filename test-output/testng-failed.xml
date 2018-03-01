@@ -3,14 +3,19 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="Test_Cases.t">
+      <class name="Test_Cases.Verify_dashboard">
         <methods>
           <include name="tracerror"/>
+          <include name="vefiry_banner"/>
+          <include name="verify_location"/>
           <include name="teardown"/>
+          <include name="verify_cart"/>
           <include name="Openbrowser"/>
-          <include name="Restaurant_Management"/>
+          <include name="verify_quicklinks"/>
+          <include name="Headerlinks"/>
+          <include name="verify_resto"/>
         </methods>
-      </class> <!-- Test_Cases.t -->
+      </class> <!-- Test_Cases.Verify_dashboard -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

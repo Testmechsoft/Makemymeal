@@ -9,9 +9,9 @@ public class Verify_links extends config.Configuration{
 	@Test
 	public void verify_links() throws IOException {
 		
-		Navigate.navigate_to("https://www.makemymeal.ae/makemymealdev");
+		Navigate.navigate_to("https://www.makemymeal.ae");
 		
-		vf.verify("https://www.makemymeal.ae/makemymealdev");
+		vf.verify("https://www.makemymeal.ae");
 	}
 
 }
