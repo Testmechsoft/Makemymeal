@@ -24,18 +24,24 @@ public class Browser_factory {
 
 		if (browser.equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver",
-					"E:\\Siddhartha\\Selenium\\Browser Drivers\\chrome\\chromedriver.exe");
+					"E:\\Siddhartha\\Selenium\\Browser Drivers\\chrome\\chromedriver2.36.exe");
+			
 			ChromeOptions options = new ChromeOptions();
+			options.addArguments("start-maximized");
 			options.addArguments("disable-infobars");
+			options.addArguments("--disable-extensions");
+			options.addArguments("--test-type");
+			options.addArguments("--ignore-certificate-errors");
+			options.addArguments("disable-infobars");
+			
 			driver = new ChromeDriver(options);
 
 		}
 
 		else if (browser.equalsIgnoreCase("IE")) {
 			
-//			DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
-//
-//			caps.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS,true);
+
+
 			System.setProperty("webdriver.ie.driver", IElocation);
 			
 			driver = new InternetExplorerDriver();

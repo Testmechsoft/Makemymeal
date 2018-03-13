@@ -171,7 +171,7 @@ public class Home {
 	WebElement sing_popup_menu;
 
 	public boolean verify_cart() throws IOException {
-		
+
 		driver.navigate().refresh();
 
 		Boolean imageLoaded1 = (Boolean) ((JavascriptExecutor) driver).executeScript(
@@ -429,11 +429,14 @@ public class Home {
 
 	}
 
-	public void click_login_signup() {
+	public void click_login_signup() throws InterruptedException {
+		
 		h.h(singup_login);
+		
 		singup_login.click();
-		wait.waitfor(2);
-		String popuptext = singup_popup.getText();
+
+		Thread.sleep(3000);
+		//String popuptext = singup_popup.getText();
 
 	}
 

@@ -1,13 +1,23 @@
 package Test_Cases;
 
+import java.util.Scanner;
+
 import org.testng.annotations.*;
 
-public class t extends config.Configuration {
+public class t {
+
+	public int meal_price;
+	public int VAT = 5;
+	public int markup;
+	public int commision;
+	public int baseprice;
+	public double loyality_amount;
+	public double loyality_points;
 
 	@Test
-	public void Restaurant_Management() throws InterruptedException {
+	public void calculate_loyalty_markup() {
 
-		reg.select_category("North Indian Veg");
+	System.out.println("test");
+
 	}
-
 }

@@ -93,7 +93,7 @@ public class Configuration {
 	@BeforeSuite
 	public void Openbrowser() throws InterruptedException {
 
-		driver.get("https://www.makemymeal.ae");
+		driver.get("https://www.makemymeal.ae//makemymealdev");
 		driver.manage().window().maximize();
 
 		try {
@@ -115,7 +115,7 @@ public class Configuration {
 		r.endTest(logger);
 		r.flush();
 
-		driver.get("E:\\Siddhartha\\Projects\\Automation-neon\\MMM.zip_expanded\\com.Makemymeal_\\report\\report.html");
+		//driver.get("E:\\Siddhartha\\Projects\\Automation-neon\\MMM.zip_expanded\\com.Makemymeal_\\report\\report.html");
 
 		try {
 
