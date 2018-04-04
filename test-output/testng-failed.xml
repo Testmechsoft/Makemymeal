@@ -3,11 +3,19 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test name="Default test(failed)">
     <classes>
-      <class name="Test_Cases.loyalty_calculator">
+      <class name="Test_Cases.Order_meal">
         <methods>
-          <include name="calculate_loyalty_commission"/>
+          <include name="tracerror"/>
+          <include name="select_restaurant"/>
+          <include name="select_meal"/>
+          <include name="teardown"/>
+          <include name="select_meal_delivery"/>
+          <include name="address"/>
+          <include name="Openbrowser"/>
+          <include name="order_meal"/>
+          <include name="signin"/>
         </methods>
-      </class> <!-- Test_Cases.loyalty_calculator -->
+      </class> <!-- Test_Cases.Order_meal -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

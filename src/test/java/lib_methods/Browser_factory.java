@@ -19,31 +19,27 @@ public class Browser_factory {
 	public String firefoxlocation = "E:\\Siddhartha\\Selenium\\Browser Drivers\\geckodriver-v0.19.1-win64.zip\\geckodriver.exe";
 	public String node = "http://192.168.5.120//wd//hub";
 
-
 	public WebDriver initiate_browser(String browser) throws MalformedURLException {
 
 		if (browser.equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver",
 					"E:\\Siddhartha\\Selenium\\Browser Drivers\\chrome\\chromedriver2.36.exe");
-			
+
 			ChromeOptions options = new ChromeOptions();
 			options.addArguments("start-maximized");
 			options.addArguments("disable-infobars");
 			options.addArguments("--disable-extensions");
 			options.addArguments("--test-type");
 			options.addArguments("--ignore-certificate-errors");
-			options.addArguments("disable-infobars");
-			
+
 			driver = new ChromeDriver(options);
 
 		}
 
 		else if (browser.equalsIgnoreCase("IE")) {
-			
-
 
 			System.setProperty("webdriver.ie.driver", IElocation);
-			
+
 			driver = new InternetExplorerDriver();
 		}
 

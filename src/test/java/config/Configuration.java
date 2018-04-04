@@ -1,8 +1,11 @@
 package config;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.time.LocalTime;
 
+import javax.mail.MessagingException;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,8 +15,11 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 
+import com.pageObject.Checkout;
 import com.pageObject.Home;
+import com.pageObject.Meal_list;
 import com.pageObject.Restaurant_Reg;
+import com.pageObject.Restaurant_list;
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -29,6 +35,7 @@ import lib_methods.Remove_character_from_string;
 import lib_methods.Screenshot;
 import lib_methods.Scroll;
 import lib_methods.Select_dropdown;
+import lib_methods.SendEmail;
 import lib_methods.Sikuli_c;
 import lib_methods.Verify_Link;
 import lib_methods.Wait_for_pageload;
@@ -61,15 +68,17 @@ public class Configuration {
 	public Home dashbaord;
 	public Mouse_actions m;
 	public Restaurant_Reg reg;
-
-	
+	public Restaurant_list rl;
+	public Meal_list meal;
+	public Checkout checkout;
+	public SendEmail smt;
+	public String msg;
 
 	public Configuration() {
 		b = new Browser_factory();
 		try {
 			driver = b.initiate_browser("chrome");
 		} catch (MalformedURLException e1) {
-
 			e1.printStackTrace();
 		}
 		log = new Log();
@@ -87,7 +96,11 @@ public class Configuration {
 		dashbaord = PageFactory.initElements(driver, Home.class);
 		m = new Mouse_actions(driver);
 		reg = new Restaurant_Reg(driver);
-		
+		rl = PageFactory.initElements(driver, Restaurant_list.class);
+		meal = PageFactory.initElements(driver, Meal_list.class);
+		loginpage = PageFactory.initElements(driver, Home.class);
+		checkout = PageFactory.initElements(driver, Checkout.class);
+		smt = new SendEmail();
 	}
 
 	@BeforeSuite
@@ -109,13 +122,15 @@ public class Configuration {
 	}
 
 	@AfterTest
-	public void teardown() throws InterruptedException {
+	public void teardown() throws InterruptedException, FileNotFoundException, MessagingException, IOException {
 
 		log.tracelog("Test finished");
 		r.endTest(logger);
 		r.flush();
 
-		//driver.get("E:\\Siddhartha\\Projects\\Automation-neon\\MMM.zip_expanded\\com.Makemymeal_\\report\\report.html");
+		driver.get("E:\\Siddhartha\\Projects\\Automation-neon\\MMM.zip_expanded\\com.Makemymeal_\\report\\report.html");
+
+		
 
 		try {
 
@@ -134,9 +149,11 @@ public class Configuration {
 
 			try {
 
+				msg = "Issue in" + " " + result.getName() + "" + "!!!!";
+
 				filepath = s.Capturescreenshot(driver, result.getName());
 
-				System.out.println(filepath);
+				smt.send_Attachment_mail(msg, filepath);
 
 				logger.log(LogStatus.FAIL, result.getName() + "-------Fail", logger.addScreenCapture(filepath));
 

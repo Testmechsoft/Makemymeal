@@ -170,6 +170,15 @@ public class Home {
 	@FindBy(xpath = ".//*[@id='Registration']/div/div[1]/h4")
 	WebElement sing_popup_menu;
 
+	@FindBy(xpath = ".//*[@id='user_email']")
+	WebElement Email_address;
+
+	@FindBy(xpath = ".//*[@id='user_password']")
+	WebElement password;
+
+	@FindBy(xpath = ".//*[@id='btnLogin']")
+	WebElement Login_button;
+
 	public boolean verify_cart() throws IOException {
 
 		driver.navigate().refresh();
@@ -430,13 +439,13 @@ public class Home {
 	}
 
 	public void click_login_signup() throws InterruptedException {
-		
+
 		h.h(singup_login);
-		
+
 		singup_login.click();
 
 		Thread.sleep(3000);
-		//String popuptext = singup_popup.getText();
+		// String popuptext = singup_popup.getText();
 
 	}
 
@@ -447,7 +456,7 @@ public class Home {
 
 	}
 
-	public void verify_city(String ci) throws InterruptedException {
+	public String verify_city(String ci) throws InterruptedException {
 
 		boolean city = select_city.isDisplayed();
 
@@ -471,6 +480,7 @@ public class Home {
 			}
 
 		}
+		return ci;
 
 	}
 
@@ -645,5 +655,55 @@ public class Home {
 		s.scroll_down(900);
 
 		return false;
+	}
+
+	public String select_area(String ar) {
+
+		try {
+			boolean area = search_deliverylocation.isDisplayed();
+
+			Assert.assertTrue(area);
+
+			Thread.sleep(3000);
+
+			WebElement x = driver
+					.findElement(By.xpath(".//*[@id='SearchRegistration']/div/div[4]/span[1]/span/span[1]"));
+
+			x.click();
+
+			List<WebElement> locationlist = driver.findElements(By.xpath(".//*[@id='area_id_listbox']/li"));
+
+			for (WebElement ele : locationlist) {
+
+				String location = ele.getText();
+
+				if (ele.getText().equalsIgnoreCase(ar)) {
+
+					ele.click();
+
+					Thread.sleep(2000);
+
+					break;
+				}
+
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ar;
+	}
+
+	public void Login(String username, String pswd) {
+
+		h.h(Email_address);
+		Email_address.sendKeys(username);
+
+		h.h(password);
+		password.sendKeys(pswd);
+
+		h.h(Login_button);
+		Login_button.click();
+
 	}
 }
