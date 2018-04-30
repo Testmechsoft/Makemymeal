@@ -4,20 +4,24 @@ import org.testng.annotations.Test;
 
 import com.pageObject.Home;
 
+
 import config.Configuration;
+//import lib_methods.Record;
 
 public class Order_meal extends Configuration {
 
 	public String area;
 	public String city;
+	//public Record record = new Record(driver);
 
 	@Test(priority = 1)
 	public void select_area() throws InterruptedException {
-
+		
 		city = dashbaord.verify_city("Sharjah");
 		Thread.sleep(3000);
+		
 		area = dashbaord.select_area("Abu Shagara Park");
-
+		
 	}
 
 	@Test(priority = 2)

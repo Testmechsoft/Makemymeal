@@ -24,6 +24,7 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
+
 import lib_methods.Browser_factory;
 import lib_methods.ExcelSheetDriver;
 import lib_methods.Explicit_timeout;
@@ -31,6 +32,7 @@ import lib_methods.Implicit_timeout;
 import lib_methods.Log;
 import lib_methods.Mouse_actions;
 import lib_methods.Navigate;
+//import lib_methods.Record;
 import lib_methods.Remove_character_from_string;
 import lib_methods.Screenshot;
 import lib_methods.Scroll;
@@ -73,6 +75,7 @@ public class Configuration {
 	public Checkout checkout;
 	public SendEmail smt;
 	public String msg;
+	
 
 	public Configuration() {
 		b = new Browser_factory();
@@ -101,6 +104,7 @@ public class Configuration {
 		loginpage = PageFactory.initElements(driver, Home.class);
 		checkout = PageFactory.initElements(driver, Checkout.class);
 		smt = new SendEmail();
+		
 	}
 
 	@BeforeSuite
@@ -108,6 +112,8 @@ public class Configuration {
 
 		driver.get("https://www.makemymeal.ae//makemymealdev");
 		driver.manage().window().maximize();
+
+		
 
 		try {
 			r = new ExtentReports(
@@ -122,15 +128,16 @@ public class Configuration {
 	}
 
 	@AfterTest
-	public void teardown() throws InterruptedException, FileNotFoundException, MessagingException, IOException {
+	public void teardown() throws InterruptedException, FileNotFoundException, MessagingException, IOException
+		 {
 
 		log.tracelog("Test finished");
 		r.endTest(logger);
 		r.flush();
 
-		driver.get("E:\\Siddhartha\\Projects\\Automation-neon\\MMM.zip_expanded\\com.Makemymeal_\\report\\report.html");
-
 		
+
+		driver.get("E:\\Siddhartha\\Projects\\Automation-neon\\MMM.zip_expanded\\com.Makemymeal_\\report\\report.html");
 
 		try {
 
@@ -152,6 +159,8 @@ public class Configuration {
 				msg = "Issue in" + " " + result.getName() + "" + "!!!!";
 
 				filepath = s.Capturescreenshot(driver, result.getName());
+
+				
 
 				smt.send_Attachment_mail(msg, filepath);
 

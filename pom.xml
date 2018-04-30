@@ -151,6 +151,20 @@
 				<artifactId>ashot</artifactId>
 				<version>1.5.3</version>
 			</dependency>
+			<!-- https://mvnrepository.com/artifact/org.monte/screen-recorder -->
+			<dependency>
+				<groupId>org.monte</groupId>
+				<artifactId>screen-recorder</artifactId>
+				<version>0.7.7</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/com.automation-remarks/video-recorder -->
+			<dependency>
+				<groupId>com.automation-remarks</groupId>
+				<artifactId>video-recorder</artifactId>
+				<version>1.0</version>
+			</dependency>
+
 			<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-io</artifactId>
