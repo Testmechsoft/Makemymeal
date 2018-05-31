@@ -30,6 +30,38 @@ public class Restaurant_list {
 	@CacheLookup
 	WebElement cpopup;
 
+	@FindBy(xpath = ".//*[@class='sssss' and contains(text(),'South Indian Veg')]")
+	@CacheLookup
+	WebElement rad_South_Indian_Veg;
+
+	@FindBy(xpath = ".//*[@class='sssss' and contains(text(),'North Indian Veg')]")
+	@CacheLookup
+	WebElement rad_North_Indian_Veg;
+
+	@FindBy(xpath = ".//*[@class='sssss' and contains(text(),'Breakfast')]")
+	@CacheLookup
+	WebElement rad_Breakfast;
+	
+	
+	@FindBy(xpath = ".//*[@class='sssss' and contains(text(),'Dinner')]")
+	@CacheLookup
+	WebElement rad_Dinner;
+	
+	
+	@FindBy(xpath = ".//*[@class='sssss' and contains(text(),'Lunch & Dinner')]")
+	@CacheLookup
+	WebElement rad_Lunch_Dinner;
+	
+	
+	@FindBy(xpath = ".//*[@class='sssss' and contains(text(),'Breakfast & Dinner')]")
+	@CacheLookup
+	WebElement rad_Breakfast_Dinner;
+	
+	@FindBy(xpath = ".//*[@id='btnviewmenu']")
+	@CacheLookup
+	WebElement button_Submit;
+	
+
 	@FindBy(xpath = ".//span[@class='sssss'][contains(text(),'Indian Non Veg')]")
 	@CacheLookup
 	WebElement cusine_Indian_Non_Veg;
@@ -57,13 +89,13 @@ public class Restaurant_list {
 
 		w.until(ExpectedConditions.visibilityOf(cpopup));
 
-		h.h(cusine_Indian_Non_Veg);
-		cusine_Indian_Non_Veg.click();
+		h.h(rad_South_Indian_Veg);
+		rad_South_Indian_Veg.click();
 
 		Thread.sleep(2000);
 
-		h.h(delivery_Lunch);
-		delivery_Lunch.click();
+		h.h(rad_Dinner);
+		rad_Dinner.click();
 
 		Thread.sleep(2000);
 
@@ -71,5 +103,13 @@ public class Restaurant_list {
 		submit.click();
 
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

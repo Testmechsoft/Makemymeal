@@ -24,7 +24,7 @@ import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
 
-
+import Test_Cases.Order_meal;
 import lib_methods.Browser_factory;
 import lib_methods.ExcelSheetDriver;
 import lib_methods.Explicit_timeout;
@@ -113,7 +113,6 @@ public class Configuration {
 		driver.get("https://www.makemymeal.ae//makemymealdev");
 		driver.manage().window().maximize();
 
-		
 
 		try {
 			r = new ExtentReports(

@@ -16,12 +16,11 @@ import jxl.write.biff.RowsExceededException;
 
 public class ExcelSheetDriver {
 
-	static Sheet wrksheet;
-	static Workbook wrkbook = null;
 	public String ExcelSheetPath;
+	static Workbook wrkbook = null;
+	static Sheet wrksheet;
 	public String sheetname;
-	// private String excelpath = "";
-	// private String excelpath1 = "";
+	
 
 	public ExcelSheetDriver(String ExcelSheetPath, String sheetname) throws BiffException, IOException {
 

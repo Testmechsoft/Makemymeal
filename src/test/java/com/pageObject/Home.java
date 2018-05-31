@@ -1,6 +1,5 @@
 package com.pageObject;
 
-import java.beans.Visibility;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,17 +8,14 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.asserts.SoftAssert;
 import lib_methods.*;
 
 public class Home {
-	public WebDriver driver;
-	public heighlight h;
+	public   WebDriver driver;
+	public static heighlight h;
 	public Explicit_timeout e;
 	public Implicit_timeout wait;
 	public Sikuli_c S;

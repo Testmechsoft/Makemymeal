@@ -6,9 +6,7 @@
       <class name="Test_Cases.Delete_loyalty_every">
         <methods>
           <include name="login"/>
-          <include name="search"/>
           <include name="Openbrowser"/>
-          <include name="delete"/>
         </methods>
       </class> <!-- Test_Cases.Delete_loyalty_every -->
     </classes>
