@@ -1,0 +1,3 @@
+ host = "smtpout.secureserver.net";
+ user = "code1@mechsoftgroup.com";
+ password = "mechsoft@123";
